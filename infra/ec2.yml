@@ -1,0 +1,42 @@
+--- # Ec2_Provisioning
+- hosts: localhost
+  connection: local
+  remote_user: ec2-user
+  become: False
+  gather_facts: no
+
+  vars_files:
+    - group_vars/all_vars.yml
+
+  pre_tasks:
+
+    - name: "set fact of timestamp"
+      set_fact:
+        timestamp: "{{lookup('pipe','date +%Y%m%d%H%M%S')}}"
+
+  roles:
+    - ec2-role
+    
+    
+    
+### Apache with ssl certs    
+- hosts: webservers
+  become_user: ec2-user
+  become-method: sudo
+  become: yes
+  gather_facts: no  
+  
+  vars_files:
+    - group_vars/all_vars.yml
+    
+    
+  roles:
+    - apache-role
+
+    
+
+
+
+      
+
+

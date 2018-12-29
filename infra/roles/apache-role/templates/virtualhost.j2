@@ -1,0 +1,8 @@
+<VirtualHost *:443>
+    DocumentRoot /var/www/html
+    ServerName www.hello.com
+        SSLEngine on
+        SSLCertificateFile /etc/httpd/sites/ssl/localhost.crt
+        SSLCertificateKeyFile /etc/httpd/sites/ssl/localhost.pem
+        SSLCertificateChainFile /etc/httpd/sites/ssl/localhost.csr
+    </VirtualHost>

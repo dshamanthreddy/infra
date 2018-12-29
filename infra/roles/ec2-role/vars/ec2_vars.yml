@@ -1,0 +1,3 @@
+---
+vars_files:
+    - ../roles/ec2-role/group_vars/all_vars.yml

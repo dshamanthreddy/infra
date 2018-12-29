@@ -1,0 +1,49 @@
+---
+- name: install epel repo
+  yum: name=epel-release state=present
+
+- name: install apache
+  yum: name=httpd state=present
+  
+- name: enabled mod_rewrite
+  apache2_module: name=rewrite state=present
+  notify: restart httpd 
+  
+- name: Makr Dir for Hello HTML
+  file:
+    path: /var/www/html/hello
+    state: directory
+    mode: 0755
+    owner: apache
+    group: apache
+  
+- name: Copy HTML
+  template: 
+      src: index.html 
+      dest: /var/www/html/hello/
+      owner: apache
+      group: apache
+      mode: 0755
+  
+- name: Copy Conf File
+  template: 
+    src: httpd.conf
+    dest: /etc/httpd/conf/
+    owner: apache
+    group: apache
+    mode: 0755
+  notify:
+    - restart httpd
+
+- name: Check for 443
+  debug:
+    msg: "Check URL {{ inventory_hostname }}"
+
+  - name: Restart HTTPD
+    become: true
+    become_user: apache
+    become_method: sudo
+    shell: /usr/bin/systemctl restart httpd.service
+
+
+  

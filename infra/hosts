@@ -1,0 +1,11 @@
+[localhost]
+127.0.0.1
+#localhost ansible_connection=local ansible_python_interpreter=python
+
+[controller]
+#10.90.0.2 ansible_ssh_pass=passw0rd ansible_ssh_user=root
+
+[webservers]
+
+
+

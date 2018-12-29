@@ -1,0 +1,15 @@
+--- 
+
+
+
+
+aws_region: us-west-2
+ami_id: ami-0bb5806b2e825a199
+ec2_instances_type: t2.micro
+#keyname: test
+count: 1
+instance_tags: 
+     Name: Test_instance
+hoststring: "ansible_ssh_user=root ansible_ssh_private_key_file=../Ansible.pem"
+hostpath: "../hosts"
+       
